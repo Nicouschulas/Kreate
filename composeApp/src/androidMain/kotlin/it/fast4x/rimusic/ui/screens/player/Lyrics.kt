@@ -126,6 +126,7 @@ import it.fast4x.rimusic.ui.components.themed.TextPlaceholder
 import it.fast4x.rimusic.ui.components.themed.TitleSection
 import it.fast4x.rimusic.ui.styling.DefaultDarkColorPalette
 import it.fast4x.rimusic.ui.styling.Dimensions
+import it.fast4x.rimusic.ui.styling.LocalAppearance
 import it.fast4x.rimusic.ui.styling.PureBlackColorPalette
 import it.fast4x.rimusic.ui.styling.onOverlayShimmer
 import it.fast4x.rimusic.utils.SynchronizedLyrics
@@ -155,12 +156,18 @@ import kotlin.time.Duration.Companion.seconds
 
 val textFieldColors: TextFieldColors
     @Composable
-    get() = TextFieldDefaults.colors(
-        unfocusedTextColor =  colorPalette().text,
-        focusedTextColor = colorPalette().text,
-        unfocusedIndicatorColor = colorPalette().text,
-        focusedIndicatorColor = colorPalette().text
-    )
+    get() {
+        val colorPalette = LocalAppearance.current.colorPalette
+
+        return TextFieldDefaults.colors(
+            unfocusedTextColor =  colorPalette.text,
+            unfocusedIndicatorColor = colorPalette.textSecondary,
+            unfocusedContainerColor = colorPalette.background1,
+            focusedTextColor = colorPalette.text,
+            focusedIndicatorColor = colorPalette.accent,
+            focusedContainerColor = colorPalette.background2
+        )
+    }
 
 
 @UnstableApi
@@ -692,22 +699,18 @@ fun Lyrics(
                         title = title
                     )?.onSuccess {
                         if (it.isNotEmpty() && playerEnableLyricsPopupMessage)
-                            coroutineScope.launch {
+                            Toaster.s(
+                                R.string.info_lyrics_tracks_found_on_s,
+                                "LrcLib.net",
+                                duration = Toast.LENGTH_LONG
+                            )
+                        else
+                            if (playerEnableLyricsPopupMessage)
                                 Toaster.e(
-                                    R.string.info_lyrics_tracks_found_on_s,
+                                    R.string.info_lyrics_not_found_on_s,
                                     "LrcLib.net",
                                     duration = Toast.LENGTH_LONG
                                 )
-                            }
-                        else
-                            if (playerEnableLyricsPopupMessage)
-                                coroutineScope.launch {
-                                    Toaster.e(
-                                        R.string.info_lyrics_not_found_on_s,
-                                        "LrcLib.net",
-                                        duration = Toast.LENGTH_LONG
-                                    )
-                                }
                         if (it.isEmpty()){
                             menuState.display {
                                 Menu {
