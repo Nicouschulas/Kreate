@@ -160,7 +160,8 @@ UI/UX designers are welcome!
 | Translators library                                           | [therealbush/translator](https://github.com/therealbush/translator)                                                                    |                                                               |
 | Lyrics provider                                               | [KuGou](https://www.kugou.com), [LrcLib](https://lrclib.net)                                                                           |                                                               |
 | [HypnoticCanvas](https://github.com/mikepenz/HypnoticCanvas/) | [mikepenz](https://github.com/mikepenz)                                                                                                | A shader modifier for Compose Multiplatform / Jetpack Compose |
-| App logo                                                      | [MedieroAF](https://github.com/MedieroAF)                                                                                              | MedieroAF's logo since 1.3.0                                  |
+| App logo                                                      | [Nicouschulas](https://github.com/Nicouschulas)                                                                                        | Nicouschulas logo since 2.0                                   |
+| Old App logo                                                  | [MedieroAF](https://github.com/MedieroAF)                                                                                              | MedieroAF's logo since 1.3.0 up to 1.8.2                      |
 | Badges                                                        | [Shields.IO](https://shields.io/), [dcbadge](https://github.com/gitlimes/dcbadge)                                                      |                                                               |
 
 # 💸 Donation
